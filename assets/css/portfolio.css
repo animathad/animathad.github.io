@@ -164,7 +164,7 @@ a { color: var(--color-text-link); }
 }
 
 .home-hero__name {
-    font-size: clamp(2.6rem, 2.1rem + 2.4vw, 3.9rem);
+    font-size: clamp(2.6rem, calc(2.1rem + 2.4vw), 3.9rem);
     line-height: 1.02;
     font-weight: 500;
     margin: 0 0 0.9rem;
@@ -173,7 +173,7 @@ a { color: var(--color-text-link); }
 
 .home-hero__headline {
     font-family: var(--secondary-font-family);
-    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.55rem);
+    font-size: clamp(1.25rem, calc(1.1rem + 0.6vw), 1.55rem);
     font-style: italic;
     color: var(--color-text-sub);
     line-height: 1.35;
@@ -428,7 +428,7 @@ a { color: var(--color-text-link); }
 }
 
 .note-page-section h1,
-.static-page h1 { font-size: clamp(2rem, 1.6rem + 1.6vw, 2.7rem); font-weight: 500; }
+.static-page h1 { font-size: clamp(2rem, calc(1.6rem + 1.6vw), 2.7rem); font-weight: 500; }
 
 /* ---- Meta / back link ---- */
 .meta-title { color: var(--color-text-sub); }

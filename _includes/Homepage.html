@@ -1,8 +1,68 @@
-<div class="home-intro">
-    <div class="jumbo">{{site.heading}} </div>
-    <div class="home-sub-text"> <h3>
-        Jekyll Garden is a markdown friendly theme lets you publish your Obsidian vault (or a subset of it) as a Jekyll static website. 
-        Check out the <a href="{{'/notes' | relative_url}}"> demo </a>, <a href="{{'/post/features' | relative_url}}"> features </a> and <a href="{{'/post/how-to' | relative_url}}"> how to</a>.
-        </h3> 
-</div> </div>
+<header class="home-hero">
+    <div class="home-hero__avatar">
+        <img src="{{ '/assets/img/profile.svg' | relative_url }}" alt="{{ site.author.name }}" width="78" height="78">
+    </div>
+    <h1 class="home-hero__name">{{ site.author.name }}</h1>
+    <p class="home-hero__headline">{{ site.tagline }}</p>
+    <p class="home-hero__intro">
+        I'm an engineering manager on Adobe's Developer Platforms team in San Jose, where I lead the internal
+        platforms and tooling Adobe's engineers build on every day — most recently a new charter around
+        <em>AI factories</em> for our ~15,000 developers. This site is where I think out loud: essays and
+        working notes on AI, developer platforms, and the systems that scale them.
+    </p>
 
+    <div class="home-hero__actions">
+        <a class="btn" href="{{ '/posts' | relative_url }}">Read the blog</a>
+        <a class="btn btn--ghost" href="{{ '/notes' | relative_url }}">Wander the garden</a>
+        <a class="btn btn--ghost" href="{{ '/about' | relative_url }}">About me</a>
+    </div>
+
+    <div class="social-row">
+        {%- if site.social.linkedin -%}
+        <a href="https://www.linkedin.com/in/{{ site.social.linkedin }}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0Z"/></svg>
+            LinkedIn
+        </a>
+        {%- endif -%}
+        {%- if site.social.github -%}
+        <a href="https://github.com/{{ site.social.github }}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.575.106.785-.25.785-.556 0-.274-.01-1.002-.015-1.967-3.196.695-3.87-1.54-3.87-1.54-.523-1.33-1.277-1.684-1.277-1.684-1.043-.714.08-.699.08-.699 1.153.081 1.76 1.184 1.76 1.184 1.026 1.758 2.69 1.25 3.346.955.104-.743.401-1.25.73-1.538-2.552-.29-5.235-1.276-5.235-5.68 0-1.255.448-2.28 1.183-3.084-.119-.29-.513-1.458.112-3.04 0 0 .965-.309 3.163 1.178a11 11 0 0 1 5.76 0c2.196-1.487 3.16-1.178 3.16-1.178.626 1.582.232 2.75.114 3.04.737.804 1.182 1.829 1.182 3.084 0 4.415-2.687 5.386-5.247 5.67.413.355.78 1.056.78 2.129 0 1.537-.014 2.777-.014 3.155 0 .309.207.668.79.555A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+            GitHub
+        </a>
+        {%- endif -%}
+    </div>
+</header>
+
+{%- assign recent_posts = site.posts | slice: 0, 5 -%}
+{%- if recent_posts.size > 0 -%}
+<section class="home-section">
+    <div class="home-section__head">
+        <h2 class="home-section__title">Latest writing</h2>
+        <a class="home-section__more" href="{{ '/posts' | relative_url }}">All posts →</a>
+    </div>
+    {%- for post in recent_posts -%}
+    <a class="writing-item" href="{{ site.baseurl }}{{ post.url }}">
+        <span class="writing-item__title">{{ post.title }}</span>
+        <span class="writing-item__date">{{ post.date | date: "%b %Y" }}</span>
+    </a>
+    {%- endfor -%}
+</section>
+{%- endif -%}
+
+{%- assign garden_notes = site.notes | where: "feed", "show" | sort: "date" | reverse -%}
+{%- if garden_notes.size > 0 -%}
+<section class="home-section">
+    <div class="home-section__head">
+        <h2 class="home-section__title">From the garden</h2>
+        <a class="home-section__more" href="{{ '/notes' | relative_url }}">Explore all →</a>
+    </div>
+    <div class="garden-grid">
+        {%- for note in garden_notes limit: 4 -%}
+        <a class="garden-card" href="{{ site.baseurl }}{{ note.url }}">
+            <h6>{{ note.title }}</h6>
+            <p>{{ note.content | strip_html | strip | remove: "[[" | remove: "]]" | escape | truncate: 110 }}</p>
+        </a>
+        {%- endfor -%}
+    </div>
+</section>
+{%- endif -%}

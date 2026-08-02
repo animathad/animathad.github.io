@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Anirudh Mathad">
+  <defs>
+    <linearGradient id="am-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#33589c"/>
+      <stop offset="1" stop-color="#243f74"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="80" r="80" fill="url(#am-bg)"/>
+  <text x="80" y="82" text-anchor="middle" dominant-baseline="central" fill="#FBFAF7" font-family="Georgia, 'Times New Roman', serif" font-size="62" font-weight="500" letter-spacing="1">AM</text>
+</svg>

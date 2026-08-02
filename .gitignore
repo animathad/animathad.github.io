@@ -1,6 +1,12 @@
 _site
 .jekyll-cache
+.sass-cache
+.DS_Store
 pages/.DS_Store
 pages/tags.md
 _notes/.obsidian
 _notes/Public/.obsidian
+
+# Local Ruby/Bundler
+.bundle
+vendor

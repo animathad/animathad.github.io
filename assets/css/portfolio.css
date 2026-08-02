@@ -1,0 +1,551 @@
+---
+layout: Stylesheet
+---
+
+/* =====================================================================
+   Portfolio theme — editorial & refined
+   Loaded last, overrides Jekyll-Garden defaults (style.css / main.css).
+   Palette: warm off-white / near-black, deep ink-blue accent.
+   Type: Newsreader (serif display + prose) + Inter (UI/body).
+   ===================================================================== */
+
+/* ---- Design tokens ---- */
+:root {
+    --primary-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --secondary-font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    --mono-font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    --accent: #2B4C8C;
+    --accent-strong: #1E3A6E;
+    --measure: 42rem;
+}
+
+/* ---- Colour themes (mirror theme structure so overrides win) ---- */
+html,
+html[data-theme="light"] {
+    --color-bg-main: #FBFAF7;
+    --color-bg-sub: #F2EFE8;
+    --color-text-main: #1C1C21;
+    --color-text-sub: #63636E;
+    --color-text-link: #2B4C8C;
+    --color-border-dark: #2B4C8C;
+    --color-border: #E2DED2;
+    --color-border-light: #ECE8DE;
+    --accent: #2B4C8C;
+    --accent-strong: #1E3A6E;
+}
+
+html[data-theme="dark"] {
+    --color-bg-main: #16161A;
+    --color-bg-sub: #1E1E24;
+    --color-text-main: #ECEAE3;
+    --color-text-sub: #9B9BA5;
+    --color-text-link: #93B1E6;
+    --color-border-dark: #93B1E6;
+    --color-border: #2E2E36;
+    --color-border-light: #26262C;
+    --accent: #93B1E6;
+    --accent-strong: #B7CCF0;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    html,
+    html[data-theme="dark"] {
+        --color-bg-main: #16161A;
+        --color-bg-sub: #1E1E24;
+        --color-text-main: #ECEAE3;
+        --color-text-sub: #9B9BA5;
+        --color-text-link: #93B1E6;
+        --color-border-dark: #93B1E6;
+        --color-border: #2E2E36;
+        --color-border-light: #26262C;
+        --accent: #93B1E6;
+        --accent-strong: #B7CCF0;
+    }
+
+    html[data-theme="light"] {
+        --color-bg-main: #FBFAF7;
+        --color-bg-sub: #F2EFE8;
+        --color-text-main: #1C1C21;
+        --color-text-sub: #63636E;
+        --color-text-link: #2B4C8C;
+        --color-border-dark: #2B4C8C;
+        --color-border: #E2DED2;
+        --color-border-light: #ECE8DE;
+        --accent: #2B4C8C;
+        --accent-strong: #1E3A6E;
+    }
+}
+
+/* ---- Base ---- */
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--primary-font-family);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+}
+
+::selection {
+    background: var(--accent);
+    color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6, .jumbo {
+    font-family: var(--secondary-font-family);
+    letter-spacing: -0.01em;
+    color: var(--color-text-main);
+}
+
+a { color: var(--color-text-link); }
+
+/* Keep the search box in the UI sans-serif for legibility */
+#search-input,
+#search-input::placeholder {
+    font-family: var(--primary-font-family) !important;
+}
+
+/* ---- Navbar ---- */
+.navbar,
+.navbar.is-transparent {
+    background-color: transparent;
+    max-width: 54rem;
+    margin: 0 auto;
+    padding: 0.4rem 0.2rem;
+}
+
+.navbar-brand .navbar-item h6 {
+    font-family: var(--secondary-font-family);
+    font-size: 1.28rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-text-main);
+}
+
+.navbar-item {
+    font-family: var(--primary-font-family);
+    font-size: 0.94rem;
+    color: var(--color-text-sub);
+}
+
+.navbar-menu .navbar-start .navbar-item:hover {
+    color: var(--accent);
+    background: transparent;
+    text-decoration: none;
+}
+
+.nav-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.nav-social svg { width: 17px; height: 17px; }
+
+/* ---- Layout rhythm ---- */
+.section { padding: 2.2rem 1.5rem 4rem; }
+
+/* ---- Home hero ---- */
+.home-hero {
+    padding: 1.6rem 0 0.4rem;
+}
+
+.home-hero__avatar img {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    display: block;
+    margin-bottom: 1.4rem;
+    box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.home-hero__name {
+    font-size: clamp(2.6rem, 2.1rem + 2.4vw, 3.9rem);
+    line-height: 1.02;
+    font-weight: 500;
+    margin: 0 0 0.9rem;
+    padding: 0;
+}
+
+.home-hero__headline {
+    font-family: var(--secondary-font-family);
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.55rem);
+    font-style: italic;
+    color: var(--color-text-sub);
+    line-height: 1.35;
+    margin: 0 0 1.5rem;
+    max-width: var(--measure);
+}
+
+.home-hero__intro {
+    font-size: 1.08rem;
+    line-height: 1.72;
+    color: var(--color-text-main);
+    max-width: var(--measure);
+    margin: 0 0 1.8rem;
+}
+
+.home-hero__intro a { border-bottom: 1px solid var(--color-border-dark); text-decoration: none; }
+.home-hero__intro a:hover { color: var(--accent-strong); }
+
+.home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ---- Buttons ---- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--primary-font-family);
+    font-size: 0.94rem;
+    font-weight: 500;
+    line-height: 1;
+    padding: 0.62rem 1.05rem;
+    border-radius: 7px;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+    transition: transform 0.08s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover { background: var(--accent-strong); border-color: var(--accent-strong); color: #fff; text-decoration: none; transform: translateY(-1px); }
+
+.btn--ghost {
+    background: transparent;
+    color: var(--color-text-main);
+    border-color: var(--color-border);
+}
+
+.btn--ghost:hover {
+    background: var(--color-bg-sub);
+    color: var(--color-text-main);
+    border-color: var(--color-border-dark);
+}
+
+/* ---- Social row ---- */
+.social-row {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+}
+
+.social-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--color-text-sub);
+    text-decoration: none;
+}
+
+.social-row a:hover { color: var(--accent); }
+.social-row svg { width: 18px; height: 18px; }
+
+/* ---- Home sections ---- */
+.home-section { margin-top: 3.2rem; }
+
+.home-section__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border-light);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.home-section__title {
+    font-size: 0.82rem;
+    font-family: var(--primary-font-family);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-sub);
+    margin: 0;
+    padding: 0;
+}
+
+.home-section__more {
+    font-family: var(--primary-font-family);
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.home-section__more:hover { text-decoration: underline; }
+
+/* ---- Writing list (posts) ---- */
+.writing-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--color-border-light);
+    text-decoration: none;
+}
+.writing-item:last-child { border-bottom: 0; }
+
+.writing-item__title {
+    font-family: var(--secondary-font-family);
+    font-size: 1.25rem;
+    color: var(--color-text-main);
+    line-height: 1.25;
+    transition: color 0.12s ease;
+}
+.writing-item:hover .writing-item__title { color: var(--accent); }
+
+.writing-item__date {
+    font-family: var(--primary-font-family);
+    font-size: 0.8rem;
+    color: var(--color-text-sub);
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+}
+
+/* ---- Garden cards on home ---- */
+.garden-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+    margin-top: 0.9rem;
+}
+
+.garden-card {
+    display: block;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--color-border-light);
+    border-radius: 9px;
+    text-decoration: none;
+    background: var(--color-bg-sub);
+    transition: border-color 0.14s ease, transform 0.08s ease;
+}
+.garden-card:hover { border-color: var(--color-border-dark); transform: translateY(-2px); text-decoration: none; }
+
+.garden-card h6 {
+    font-family: var(--secondary-font-family);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin: 0 0 0.3rem;
+    padding: 0;
+}
+
+.garden-card p {
+    font-family: var(--primary-font-family);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--color-text-sub);
+    margin: 0;
+}
+
+/* ---- Article / prose (posts & notes) ---- */
+.note-page-section .content {
+    font-family: var(--secondary-font-family);
+    font-size: 1.19rem;
+    line-height: 1.72;
+    color: var(--color-text-main);
+}
+
+.note-page-section .content p,
+.note-page-section .content li { margin-bottom: 1.05rem; }
+
+.note-page-section .content h2,
+.note-page-section .content h3,
+.note-page-section .content h4 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 2rem;
+}
+
+.note-page-section .content h2 { font-size: 1.7rem; }
+.note-page-section .content h3 { font-size: 1.38rem; }
+
+.note-page-section .content a {
+    color: var(--color-text-link);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border-dark);
+}
+.note-page-section .content a:hover { color: var(--accent-strong); border-bottom-color: var(--accent-strong); }
+
+.note-page-section .content blockquote {
+    border-left: 3px solid var(--accent);
+    margin: 1.6rem 0;
+    padding: 0.2rem 0 0.2rem 1.2rem;
+    color: var(--color-text-sub);
+    font-style: italic;
+}
+
+.note-page-section .content hr {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: 2.4rem 0;
+}
+
+.note-page-section .content img {
+    border-radius: 8px;
+    max-width: 100%;
+}
+
+.note-page-section .content code {
+    font-family: var(--mono-font-family);
+    font-size: 0.86em;
+    background: var(--color-bg-sub);
+    padding: 0.12em 0.4em;
+    border-radius: 4px;
+    border: 1px solid var(--color-border-light);
+}
+
+.note-page-section .content pre {
+    border-radius: 9px;
+    padding: 1rem 1.1rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    border: 1px solid var(--color-border-light);
+}
+.note-page-section .content pre code { background: none; border: 0; padding: 0; }
+
+/* ---- Article header meta ---- */
+.post-meta {
+    font-family: var(--primary-font-family);
+    font-size: 0.85rem;
+    color: var(--color-text-sub);
+    letter-spacing: 0.02em;
+    margin: -0.3rem 0 0.4rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.note-page-section h1,
+.static-page h1 { font-size: clamp(2rem, 1.6rem + 1.6vw, 2.7rem); font-weight: 500; }
+
+/* ---- Meta / back link ---- */
+.meta-title { color: var(--color-text-sub); }
+.meta-title a, .meta-title h5 { color: var(--color-text-sub); font-family: var(--primary-font-family); font-size: 0.85rem; letter-spacing: 0.04em; }
+.meta-title a:hover { color: var(--accent); }
+
+/* ---- Feed pages (Blog index & Garden index) ---- */
+.jumbo {
+    font-weight: 500;
+    letter-spacing: -0.015em;
+}
+
+.feed-lead {
+    font-family: var(--secondary-font-family);
+    font-size: 1.16rem;
+    color: var(--color-text-sub);
+    line-height: 1.6;
+    max-width: var(--measure);
+    margin-bottom: 2rem;
+}
+
+/* posts index rows */
+.list-feed { border-bottom: 1px solid var(--color-border-light); padding: 0.2rem 0; }
+.writinglist-title {
+    font-family: var(--secondary-font-family);
+    font-size: 1.3rem;
+    color: var(--color-text-main);
+    padding: 0.7rem 0;
+    transition: color 0.12s ease;
+}
+.list-feed:hover .writinglist-title { color: var(--accent); }
+
+/* garden note cards (feed) */
+.notelist-feed {
+    border: 1px solid var(--color-border-light);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem;
+    margin-bottom: 0.9rem;
+    background: var(--color-bg-sub);
+    transition: border-color 0.14s ease, transform 0.08s ease;
+}
+.notelist-feed:hover { border-color: var(--color-border-dark); transform: translateY(-2px); background: var(--color-bg-sub); }
+.notelist-feed h6 {
+    font-family: var(--secondary-font-family);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: var(--color-text-main);
+}
+.notelist-feed .excerpt { font-family: var(--primary-font-family); font-size: 0.9rem; color: var(--color-text-sub); line-height: 1.55; }
+
+/* ---- Tag pills ---- */
+.tag, a.tag {
+    font-family: var(--primary-font-family) !important;
+    background: var(--color-bg-sub) !important;
+    color: var(--color-text-sub) !important;
+    border: 1px solid var(--color-border-light);
+    font-size: 0.78rem !important;
+}
+.tag:hover { color: var(--accent) !important; border-color: var(--color-border-dark); }
+
+/* ---- Backlinks block ---- */
+.related-wrapper .related-group h6 { font-family: var(--secondary-font-family); }
+
+/* ---- Footer ---- */
+#copyright, .site-footer {
+    max-width: 54rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    border-top: 1px solid var(--color-border-light);
+}
+
+.site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.6rem;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--primary-font-family);
+    font-size: 0.85rem;
+    color: var(--color-text-sub);
+}
+.site-footer a { color: var(--color-text-sub); text-decoration: none; }
+.site-footer a:hover { color: var(--accent); }
+.site-footer .site-footer__links { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+
+/* ---- About page ---- */
+.about-lead {
+    font-family: var(--secondary-font-family);
+    font-size: 1.3rem;
+    line-height: 1.55;
+    color: var(--color-text-main);
+    margin-bottom: 1.6rem;
+}
+
+.about-facts { list-style: none; padding: 0; margin: 1.4rem 0; }
+.about-facts li {
+    display: flex;
+    gap: 0.8rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--color-border-light);
+    font-family: var(--primary-font-family);
+    font-size: 0.95rem;
+}
+.about-facts li span:first-child {
+    color: var(--color-text-sub);
+    min-width: 9rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 0.15rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+    .garden-grid { grid-template-columns: 1fr; }
+    .section { padding: 1.4rem 1.2rem 3rem; }
+    .about-facts li { flex-direction: column; gap: 0.15rem; }
+    .about-facts li span:first-child { min-width: 0; }
+}

@@ -30,17 +30,20 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="Hiran Venugopalan" property="og:site_name" />
-    <meta
-        content="Product and Type Designer | UI UX | Design Mentoring"
-        property="og:description">
-    <meta content="{{ site.url }}/about/" property="article:author">
-    <meta property="og:image" content="../assets/img/OGImg.png">
+    <meta content="{{ site.heading }}" property="og:site_name" />
+    <meta name="author" content="{{ site.author.name | default: site.heading }}">
+    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 200 }}{% else %}{{ site.description }}{% endif %}" property="og:description">
+    <meta content="{{ site.url }}/about" property="article:author">
+    <meta property="og:image" content="{{ site.url }}/assets/img/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
     {%- if page.title -%}
     <meta content="{{ page.title }}" property="og:title">
     <meta content="article" property="og:type">
@@ -50,21 +53,15 @@
     <meta content="{{ site.url }}{{ page.url }}" property="og:url">
     {%- endif -%}
 
-    <title>{{page.title}} - {{site.heading}}</title>
-    <script data-host="https://microanalytics.io" data-dnt="false" src="https://microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>
-    <link rel="canonical" href="{{site.url}}{{page.url}}" />
-    <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/img/profile.png">
-    <link rel="icon" href="{{ site.baseurl }}/assets/img/favicon.png" type="image/png" sizes="16x16" />
+    <title>{%- if page.title and page.permalink != "/" -%}{{ page.title }} · {{ site.heading }}{%- else -%}{{ site.heading }} — {{ site.tagline }}{%- endif -%}</title>
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    <link rel="icon" href="{{ site.baseurl }}/assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/img/apple-touch-icon.png">
     <link href="{{ site.baseurl }}/assets/css/style.css" rel="stylesheet" media="all" class="default" />
     <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet" media="all" class="default" />
     <link href="{{ site.baseurl }}/assets/css/Util.css" rel="stylesheet" media="all" class="default" />
-    <link href="{{ site.baseurl }}/assets/css/vendor/Katex.css" rel="stylesheet" media="all" class="default" />
-
-    <!--[if IE]>
-        <link href="/assets/css/ie-target.css" rel="stylesheet" type="text/css"/>
-    <![endif]-->
-    <!--<link href="/assets/css/prism.css" rel="stylesheet" />-->
-    <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml">
+    <link href="{{ site.baseurl }}/assets/css/portfolio.css" rel="stylesheet" media="all" class="default" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.heading }}" href="{{ site.url }}/feed.xml">
 </head>
 
 <body>
@@ -136,15 +133,12 @@
                 <div class="jumbo">{{page.title}}</div>
                     {%- include Content.html -%}
                     {% for post in site.posts %}
-                        <div class="list-feed"> 
-                        <a href="{{ site.baseurl }}{{post.url}}" style="text-decoration: none;display: flex;justify-content: space-between;flex-direction: row;width: 100%;">
-                            <div class="writinglist-title">{{post.title }}</div>
-                        </a>
-                        </div>
+                    <a class="writing-item" href="{{ site.baseurl }}{{ post.url }}">
+                        <span class="writing-item__title">{{ post.title }}</span>
+                        <span class="writing-item__date">{{ post.date | date: "%b %-d, %Y" }}</span>
+                    </a>
                     {%- endfor -%}
-            </div> 
-
-            <ul>
+            </div>
                 
             {%- endif -%}
 
@@ -162,6 +156,10 @@
                              </a>
                          </div>
                      <h1>{{page.title}}</h1>
+                     <div class="post-meta">
+                         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+                         {%- if page.tags and page.tags.size > 0 -%}<span>·</span>{%- for tag in page.tags -%} <span class="tag">{{ tag }}</span>{%- endfor -%}{%- endif -%}
+                     </div>
                      {%- include Content.html -%}
                      {%- include Backlinks.html -%}
                      </div>
@@ -170,9 +168,11 @@
 
             <!--- Static Page Layout-->
             {%- if page.content-type == "static" -%}
-            <div class="column is-5-widescreen  is-6-desktop is-8-tablet is-12-mobile">
-                        <div class="jumbo">{{page.title}}</div>                        
+            <div class="column is-6-widescreen is-7-desktop is-8-tablet is-12-mobile">
+                    <div class="note-page-section static-page">
+                        <div class="jumbo">{{page.title}}</div>
                         {%- include Content.html -%}
+                    </div>
                 </div>
             {%- endif -%}
         </div>

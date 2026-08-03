@@ -10,7 +10,7 @@ description: Anirudh Mathad — Engineering Manager at Adobe, working on platfor
 
 <p class="about-lead">I'm an Engineering Manager at Adobe, San Jose, focused on platform engineering — the CI/CD systems, internal tooling, and developer platforms that Adobe's engineers build on every day.</p>
 
-I manage Adobe's default CI/CD systems and services. My portfolio also includes **Adobe Service Runtime** (our Java foundational libraries), **Gen AI Diagnostics**, and **Bootstrap Code Templating Services**. I lead the Adobe Service Runtime team and also work on Adobe's **Internal Developer Platform**, used by thousands of Adobe's developers to generate code, integrate with Adobe's internal services, and deploy to Kubernetes.
+I manage Adobe's default CI/CD systems and services. My portfolio also includes [**Adobe Service Runtime**](/projects#adobe-service-runtime) (our Java foundational libraries), **Gen AI Diagnostics**, and **Bootstrap Code Templating Services**. I lead the Adobe Service Runtime team and also work on Adobe's **Internal Developer Platform**, used by thousands of Adobe's developers to generate code, integrate with Adobe's internal services, and deploy to Kubernetes. More on these in [Projects](/projects).
 
 I'm drawn to the unglamorous layer of software — the platforms, build systems, and release pipelines that rarely get talked about but decide how quickly everyone else can move.
 

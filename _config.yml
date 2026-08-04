@@ -11,10 +11,11 @@ baseurl: ""
 
 # Identity shown across the site
 heading: Anirudh Mathad
-tagline: Engineering leader at Adobe, building AI factories for 15,000 developers.
+tagline: Engineering manager at Adobe, building agentic code review and the infrastructure to run agents at scale.
 description: >-
-  Anirudh Mathad — engineering leader at Adobe. Essays and working notes on
-  AI, developer platforms, and the systems that scale them.
+  Anirudh Mathad — engineering manager in Adobe's Builders Experience group.
+  Essays and working notes on AI, developer platforms, and the systems that
+  scale them.
 
 author:
   name: Anirudh Mathad
